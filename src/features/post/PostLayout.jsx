@@ -11,17 +11,17 @@ export const PostLayout = ({ user, children, createdAt, className }) => {
     <div className={clsx("flex w-full flex-row items-start p-4", className)}>
       <Avatar>
         {user.image ? (
-          <AvatarImage src={user.image} alt={user.username} />
+          <AvatarImage src={user.image} alt={user.name} />
         ) : null}
         <AvatarFallback>
-          {user.username ? user.username.slice(0, 2).toUpperCase() : "UN"}
+          {user.name ? user.name.slice(0, 2).toUpperCase() : "UN"}
         </AvatarFallback>
       </Avatar>
       <div className="ml-4 flex w-full flex-col gap-2">
         <div className="flex  items-center justify-between gap-2">
           <Link href={`/users/${user.id}`}>
             <p className="mr-auto font-bold text-card-foreground">
-              {user.username}
+              {user.name}
             </p>
           </Link>
           <div className="flex items-center gap-3">
@@ -30,9 +30,7 @@ export const PostLayout = ({ user, children, createdAt, className }) => {
                 {formatDate(createdAt)}
               </p>
             ) : null}
-            <button onClick={() => console.log("test22")}>
               <MoreHorizontal size={20} />
-            </button>
           </div>
         </div>
 

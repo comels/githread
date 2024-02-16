@@ -1,6 +1,7 @@
-import { prisma } from "@/lib/prisma";
 import { faker } from "@faker-js/faker";
+import { PrismaClient } from "@prisma/client";
 
+export const prisma = new PrismaClient();
 
 const main = async () => {
   const users = [];
@@ -10,7 +11,6 @@ const main = async () => {
   // Création des utilisateurs
   for (let i = 0; i < 30; i++) {
     const user = {
-      username: faker.internet.userName(),
       email: faker.internet.email(),
       name: faker.person.fullName(),
       image: faker.image.avatar(),

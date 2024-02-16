@@ -18,7 +18,6 @@ export const authOptions = {
         return {
           id: profile.sub.toString(),
           name: profile.name,
-          username: profile.name,
           email: profile.email,
           image: profile.picture,
         };
@@ -30,7 +29,6 @@ export const authOptions = {
       profile(profile) {
         return {
           id: profile.id.toString(),
-          username: profile.login,
           name: profile.name,
           email: profile.email,
           image: profile.avatar_url,

@@ -79,7 +79,7 @@ const ProfileView = async ({ params }) => {
         </form>
       </div>
       <div className="divide-y divide-accent border-t py-10">
-        {user.post.map((post) => (
+        {user.posts.map((post) => (
           <Post post={post} key={post.id} />
         ))}
       </div>

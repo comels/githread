@@ -6,13 +6,12 @@ export const postSelect = (userId) => ({
   createdAt: true,
   user: {
     select: {
-      username: true,
       name: true,
       image: true,
       id: true,
     },
   },
-  like: {
+  likes: {
     select: {
       userId: true,
     },
@@ -22,7 +21,7 @@ export const postSelect = (userId) => ({
   },
   _count: {
     select: {
-      like: true,
+      likes: true,
       replies: true,
     },
   },

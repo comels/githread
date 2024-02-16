@@ -55,12 +55,10 @@ model Post {
   parentId  String?
   userId    String
   createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  parent  Post?  @relation("comments", fields: [parentId], references: [id])
-  replies Post[] @relation("comments")
-  like    Like[]
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent    Post?    @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Post[]   @relation("ParentChild")
+  likes     Like[]
 }
 
 model Like {
@@ -69,25 +67,24 @@ model Like {
   userId    String
   createdAt DateTime @default(now())
 
-  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  posts Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user  User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String?   @unique
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  username      String?   @unique
   bio           String?
   link          String?
   createdAt     DateTime  @default(now())
 
   followers Follow[]  @relation("follower")
   following Follow[]  @relation("following")
-  post      Post[]
-  like      Like[]
+  posts     Post[]
+  likes     Like[]
   accounts  Account[]
   sessions  Session[]
 }

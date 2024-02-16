@@ -1,28 +1,71 @@
 import { getAuthSession } from "@/pages/api/auth/[...nextauth]";
-import { getUser } from "@/src/query/user.query";
 import { notFound } from "next/navigation";
+import { Post } from "@/src/features/post/Post";
+import { getUserById } from "@/src/query/user.query";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { EditProfileForm } from "@/src/features/EditProfileForm";
 
-const profile = async () => {
+const ProfileView = async () => {
   const session = await getAuthSession();
-  const user = await getUser();
 
-  if (!session?.user) return notFound();
+  if (!session?.user) {
+    return notFound();
+  }
+
+  const user = await getUserById(session.user.id);
+
+  if (!user) {
+    return notFound();
+  }
+
+  const removeHTTP = (url) => {
+    return url.replace(/(^\w+:|^)\/\//, "");
+  };
 
   return (
-    <div class="mx-auto w-full max-w-lg rounded-lg border border-gray-200 bg-white shadow">
-      <div class="flex flex-col items-center pb-10">
+    <div className="mx-auto w-full max-w-xl  bg-white">
+      <div className="flex justify-end px-4 pt-4"></div>
+      <div className="flex flex-col items-center pb-10">
         <img
-          class="mb-3 h-24 w-24 rounded-full shadow-lg"
-          src={session.user.image}
-          alt="Bonnie image"
+          className="mb-4 h-24 w-24 rounded-full"
+          src={user.image}
+          alt={user.name + " image"}
         />
-        <h5 class="mb-1 text-xl font-medium text-newColor-700 hover:text-newColor-400">
-          {session.user.name}
-        </h5>
-        <span class="text-sm text-gray-500">{session.user.email}</span>
+        <h5 className="text-xl font-medium text-gray-900">{user.name}</h5>
+        {user.bio && (
+          <p className="mb-3 text-sm italic text-gray-800">{user.bio}</p>
+        )}
+        <div className="flex items-center gap-3">
+          <p className="text-sm text-gray-500">
+            {user._count.followers} follower
+            {user._count.followers > 1 ? "s" : ""}
+          </p>
+          <p className="text-gray-500"> / </p>
+          {user.link && (
+            <p className="text-sm text-gray-500">
+              <a href={user.link} target="_blank" rel="noopener noreferrer">
+                {removeHTTP(user.link)}
+              </a>
+            </p>
+          )}
+        </div>
+        <form className="mt-4">
+          <Link
+            href="/profile/edit"
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            Edit Profile
+          </Link>
+        </form>
+      </div>
+      <div className="divide-y divide-accent border-t py-10">
+        {user.posts.map((post) => (
+          <Post post={post} key={post.id} />
+        ))}
       </div>
     </div>
   );
 };
 
-export default profile;
+export default ProfileView;
