@@ -2,11 +2,10 @@ import { buttonVariants } from "@/components/ui/button";
 import clsx from "clsx";
 import { Home, PenSquare, User } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 export const Footer = () => {
   return (
-    <div className="py-2 flex justify-between container fixed bottom-0 left-0 right-0 max-w-xl bg-background m-auto border-t border-accent">
+    <div className="container fixed bottom-0 left-0 right-0 m-auto flex max-w-2xl justify-between border-t border-accent bg-background py-4">
       <Link
         href="/"
         className={clsx(buttonVariants({ variant: "ghost" }), "flex-1")}

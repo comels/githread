@@ -3,10 +3,7 @@ import NextAuth, { getServerSession } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-// Initialisation du client Prisma pour interagir avec la base de données
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 // Configuration de NextAuth pour l'authentification
 export const authOptions = {
@@ -17,10 +14,28 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
+      profile(profile) {
+        return {
+          id: profile.sub.toString(),
+          name: profile.name,
+          username: profile.name,
+          email: profile.email,
+          image: profile.picture,
+        };
+      },
     }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          username: profile.login,
+          name: profile.name,
+          email: profile.email,
+          image: profile.avatar_url,
+        };
+      },
     }),
   ],
   // Callbacks pour personnaliser le comportement de NextAuth, ici on ajoute l'ID utilisateur à la session

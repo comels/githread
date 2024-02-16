@@ -10,12 +10,16 @@ export const LoginButton = () => {
   const [isPending, startTransition] = useTransition();
   return (
     <Button
-      className="mr-2"
-      onClick={() => { startTransition(() => signIn());
+      onClick={() => {
+        startTransition(() => signIn());
       }}
     >
-      {isPending ? <Loader className="mr-2 h-4 w-4"/> : <LogIn className="mr-2 h-4 w-4" />}
-      Login
+      {isPending ? (
+        <Loader className="mr-2 h-4 w-4" />
+      ) : (
+        <LogIn className="mr-2 h-4 w-4" />
+      )}
+      Se connecter
     </Button>
   );
 };
