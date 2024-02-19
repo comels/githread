@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 m-auto flex max-w-2xl justify-between border-t border-accent bg-background py-4">
+    <div className="fixed bottom-0 mx-2 left-0 right-0 m-auto flex max-w-2xl justify-between border-t border-accent bg-background py-4">
       <Link
         href="/"
         className={clsx(buttonVariants({ variant: "ghost" }), "flex-1")}

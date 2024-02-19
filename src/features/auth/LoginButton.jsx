@@ -10,6 +10,7 @@ export const LoginButton = () => {
   const [isPending, startTransition] = useTransition();
   return (
     <Button
+      variant="outline"
       onClick={() => {
         startTransition(() => signIn());
       }}
@@ -19,7 +20,7 @@ export const LoginButton = () => {
       ) : (
         <LogIn className="mr-2 h-4 w-4" />
       )}
-      Se connecter
+      Connexion
     </Button>
   );
 };

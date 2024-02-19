@@ -8,8 +8,8 @@ import Link from "next/link";
 
 export const PostLayout = ({ user, children, createdAt, className }) => {
   return (
-    <div className={clsx("flex py-4 mx-8", className)}>
-      <div className="ml-4 flex w-full flex-col gap-2">
+    <div className={clsx("mx-8 flex py-4 ", className)}>
+      <div className="flex w-full flex-col gap-2">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-3">
             <Avatar>
