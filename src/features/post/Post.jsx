@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PostLayout } from "./PostLayout";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { getUserById } from "@/src/query/user.query";
 import { getAuthSession } from "@/pages/api/auth/[...nextauth]";
@@ -15,7 +15,9 @@ export const Post = async ({ post }) => {
   return (
     <PostLayout createdAt={post.createdAt} user={post.user} postId={post.id}>
       <Link href={`/posts/${post.id}`} className="mt-2 text-sm text-foreground">
-        {post.content}
+        {post.content.split("\n").map((text, index) => (
+          <p key={index}>{text}</p>
+        ))}
       </Link>
       <div className="flex items-center gap-2">
         <LikeButton postId={post.id} isLiked={post.likes.length > 0} />
@@ -25,21 +27,23 @@ export const Post = async ({ post }) => {
         >
           <MessageCircle size={20} />
         </Link>
-        {post.user.id === user?.id ? <DeletePostButton postId={post.id} /> : null}
+        {post.user.id === user?.id ? (
+          <DeletePostButton postId={post.id} />
+        ) : null}
       </div>
       <div>
         <Link
           className=" text-sm text-muted-foreground"
           href={`posts/${post.id}`}
         >
-          {post._count.likes} likes
+          {post._count.likes} Like{post._count.likes > 1 ? "s" : ""}
         </Link>
         {" . "}
         <Link
           className=" text-sm text-muted-foreground"
           href={`/posts/${post.id}`}
         >
-          {post._count.replies} comments
+          {post._count.replies} Commentaire{post._count.replies > 1 ? "s" : ""}
         </Link>
       </div>
     </PostLayout>

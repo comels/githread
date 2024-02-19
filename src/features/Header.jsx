@@ -14,7 +14,7 @@ export const Header = async () => {
         </Link>
         {session ? (
           <>
-            <h1 className="font-light">
+            <h1>
               <UserProfile />
             </h1>
           </>

@@ -8,7 +8,7 @@ const Error = () => {
     <Alert className="mt-8 flex items-center py-4" variant="ghost">
       <AlertTriangle />
       <AlertTitle className="ml-8 text-lg">
-        Vous devez être connecté pour écrire un post.
+        Le profil n'existe pas ou a été supprimé.
       </AlertTitle>
     </Alert>
   );

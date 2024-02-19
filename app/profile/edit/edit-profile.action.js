@@ -8,7 +8,7 @@ export const editProfile = async (values) => {
   const session = await getAuthSession();
 
   if (!session?.user.id) {
-    throw new Error("User not found");
+    throw new Error("Session from edit not found");
   }
 
   await prisma.user.update({

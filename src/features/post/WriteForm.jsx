@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { ContentTextArea } from "@/src/features/post/ContentTextArea";
 import { PostLayout } from "@/src/features/post/PostLayout";
@@ -34,7 +34,7 @@ export const WriteForm = ({ user, onSubmit }) => {
           }}
         />
         <div className="flex w-full justify-end">
-          <Button size="sm">Post</Button>
+          <Button variant="outline">Publier</Button>
         </div>
       </Form>
     </PostLayout>

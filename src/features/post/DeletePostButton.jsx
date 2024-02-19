@@ -1,6 +1,9 @@
 "use client";
 
-import { deletePost } from "@/app/posts/[postId]/delete-post.action";
+import {
+  deleteComPost,
+  deletePost,
+} from "@/app/posts/[postId]/delete-post.action";
 import { Loader } from "@/components/ui/loader";
 import { Trash } from "lucide-react";
 import React, { useTransition } from "react";
@@ -13,6 +16,7 @@ export const DeletePostButton = ({ postId }) => {
       className="flex items-center gap-1 rounded-md hover:bg-accent"
       onClick={() => {
         starTransaction(() => {
+          deleteComPost(postId);
           deletePost(postId);
         });
       }}

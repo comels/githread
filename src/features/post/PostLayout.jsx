@@ -10,9 +10,7 @@ export const PostLayout = ({ user, children, createdAt, className }) => {
   return (
     <div className={clsx("flex w-full flex-row items-start p-4", className)}>
       <Avatar>
-        {user.image ? (
-          <AvatarImage src={user.image} alt={user.name} />
-        ) : null}
+        {user.image ? <AvatarImage src={user.image} alt={user.name} /> : null}
         <AvatarFallback>
           {user.name ? user.name.slice(0, 2).toUpperCase() : "UN"}
         </AvatarFallback>
@@ -30,7 +28,7 @@ export const PostLayout = ({ user, children, createdAt, className }) => {
                 {formatDate(createdAt)}
               </p>
             ) : null}
-              <MoreHorizontal size={20} />
+            <MoreHorizontal size={20} />
           </div>
         </div>
 

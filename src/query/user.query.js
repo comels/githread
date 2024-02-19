@@ -6,7 +6,7 @@ export const getUser = async () => {
   const session = await getAuthSession();
 
   if (!session?.user.id) {
-    throw new Error("User not found");
+    throw new Error("Session not found");
   }
 
   const user = await prisma.user.findUniqueOrThrow({
@@ -54,7 +54,7 @@ export const getUserEdit = async () => {
   const session = await getAuthSession();
 
   if (!session?.user.id) {
-    throw new Error("User not found");
+    throw new Error("Session not found");
   }
 
   const user = await prisma.user.findUnique({

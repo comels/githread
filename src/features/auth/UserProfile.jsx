@@ -15,7 +15,7 @@ export const UserProfile = async () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary">
+        <Button variant="outline">
           {session.user.name}
         </Button>
       </DropdownMenuTrigger>
@@ -23,7 +23,7 @@ export const UserProfile = async () => {
         <DropdownMenuItem asChild>
           <Link href="/profile">
             <User2 className="mr-2 w-4 marker:h-4" />
-            Profile
+            Profil
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItemLogout />

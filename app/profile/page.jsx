@@ -1,24 +1,22 @@
 import { getAuthSession } from "@/pages/api/auth/[...nextauth]";
-import { notFound } from "next/navigation";
 import { Post } from "@/src/features/post/Post";
 import { getUserById } from "@/src/query/user.query";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { EditProfileForm } from "@/src/features/EditProfileForm";
+import clsx from "clsx";
 
 const ProfileView = async () => {
   const session = await getAuthSession();
 
   if (!session?.user) {
-    return notFound();
+    throw new Error("Session not found");
   }
 
   const user = await getUserById(session.user.id);
 
   if (!user) {
-    return notFound();
+    throw new Error("User not found");
   }
-
   const removeHTTP = (url) => {
     return url.replace(/(^\w+:|^)\/\//, "");
   };
@@ -32,7 +30,7 @@ const ProfileView = async () => {
           src={user.image}
           alt={user.name + " image"}
         />
-        <h5 className="text-xl font-medium text-gray-900">{user.name}</h5>
+        <h5 className="text-xl mb-3 font-medium text-gray-900">{user.name}</h5>
         {user.bio && (
           <p className="mb-3 text-sm italic text-gray-800">{user.bio}</p>
         )}
@@ -53,9 +51,9 @@ const ProfileView = async () => {
         <form className="mt-4">
           <Link
             href="/profile/edit"
-            className={buttonVariants({ variant: "secondary" })}
+            className={buttonVariants({ variant: "outline" })}
           >
-            Edit Profile
+            Modifier le profil
           </Link>
         </form>
       </div>

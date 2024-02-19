@@ -9,7 +9,16 @@ export const deletePost = async (postId) => {
       id: postId,
     },
   });
-
   console.log("Post deleted");
+  revalidatePath("/");
+};
+
+export const deleteComPost = async (postId) => {
+  await prisma.post.deleteMany({
+    where: {
+      parentId: postId,
+    },
+  });
+  console.log("Comms deleted");
   revalidatePath("/");
 };

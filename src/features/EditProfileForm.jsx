@@ -42,7 +42,7 @@ export const EditProfileForm = ({ user, onSubmit }) => {
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Pseudo</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -89,7 +89,7 @@ export const EditProfileForm = ({ user, onSubmit }) => {
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>Link</FormLabel>
+              <FormLabel>Site</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -99,7 +99,7 @@ export const EditProfileForm = ({ user, onSubmit }) => {
         }}
       />
       <div className="flex w-full justify-end">
-        <Button size="sm">Save</Button>
+        <Button variant="outline">Valider</Button>
       </div>
     </Form>
   );
