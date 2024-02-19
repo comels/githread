@@ -39,7 +39,7 @@ const ProfileView = async () => {
             {user._count.followers} follower
             {user._count.followers > 1 ? "s" : ""}
           </p>
-          <p className="text-gray-500"> / </p>
+          <p className="text-gray-500"> - </p>
           {user.link && (
             <p className="text-sm text-gray-500">
               <a href={user.link} target="_blank" rel="noopener noreferrer">
