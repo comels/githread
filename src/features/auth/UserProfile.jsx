@@ -19,7 +19,7 @@ export const UserProfile = async () => {
           {session.user.name}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="mr-3">
         <DropdownMenuItem asChild >
           <Link href="/profile">
             <User2 className="mx-2 w-4 marker:h-4" />

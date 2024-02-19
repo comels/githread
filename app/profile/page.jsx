@@ -42,22 +42,19 @@ const ProfileView = async () => {
         />
         <h5 className="mb-3 text-xl font-medium text-gray-900">{user.name}</h5>
         {user.bio && (
-          <p className="mb-3 text-sm italic text-gray-800">{user.bio}</p>
+          <p className="mb-3 text-sm italic text-center mx-10 text-gray-800">{user.bio}</p>
         )}
-        <div className="flex items-center gap-3">
           <p className="text-sm text-gray-500">
             {user._count.followers} follower
             {user._count.followers > 1 ? "s" : ""}
           </p>
-          <p className="text-gray-500"> - </p>
           {user.link && (
-            <p className="text-sm text-gray-500">
+            <p className="text-sm mt-3 text-gray-500">
               <a href={user.link} target="_blank" rel="noopener noreferrer">
                 {removeHTTP(user.link)}
               </a>
             </p>
           )}
-        </div>
         <form className="mt-4">
           <Link
             href="/profile/edit"

@@ -8,7 +8,7 @@ const Home = async () => {
   const posts = await getLatestPosts(session?.user?.id);
 
   return (
-    <div className="divide-y-2 divide-muted px-5">
+    <div className="mb-5 divide-y-2 divide-muted">
       {posts.map((p) => (
         <Post post={p} key={p.id} />
       ))}
